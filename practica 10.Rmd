@@ -1,0 +1,136 @@
+---
+title: "Practica 10"
+author: "Josué Alfonso Huerta Rita"
+date: '2022-03-22'
+output:
+  html_document:
+    toc: yes
+    toc_depth: 3
+    toc_float:
+      smooth_scroll: no
+    number_sections: yes
+    theme: united
+  pdf_document:
+    toc: yes
+    toc_depth: '3'
+---
+
+# Practica 10
+
+## # a) Primeros 6 regstros
+```{r include=FALSE}
+library(tidyverse)
+library(dplyr)
+```
+
+```{r}
+   datos<-read.csv("mexico_covid19.csv",header = TRUE)
+   head(datos)
+```
+## b) Dimensiones
+```{r}
+dim(datos)
+```
+## c) Cambiar variable a categorica
+```{r}
+str(datos)
+datos$SEXO<-as.character(datos$SEXO)
+str(datos)
+```
+### Reemplazar valores categoricos
+```{r}
+data2<-mutate(datos,SEXO = ifelse(SEXO == "1", "MUJER",
+                        ifelse(SEXO == "2", "HOMBRE", "NO_ESPECIFICADO")))
+```
+
+## d) Resumen
+```{r}
+fe<-select(data2,ENTIDAD,RESULTADO,SEXO)
+fe$ENTIDAD<-as.character(fe$ENTIDAD)
+fe<-group_by(fe,SEXO)
+
+res<-table(fe$ENTIDAD,fe$RESULTADO,fe$SEXO)                   
+res
+```
+
+## e) Grafica
+```{r}
+barplot(margin.table(res,1),
+        main = "Casos por entidad",
+        xlab = "Entidades", ylab = "Número de caso", horiz = FALSE,
+        col = "blue")
+```
+
+
+## f) Modificar la variable sector
+```{r}
+datos$SECTOR<-as.character(datos$SECTOR)
+```
+### Parecido al inciso c) 
+```{r}
+data2<-mutate(datos,SECTOR = ifelse(SECTOR == "1", "CRUZ_ROJA",
+                             ifelse(SECTOR == "2", "DIF", 
+                                    ifelse(SECTOR == "2", "DIF", 
+                                           ifelse(SECTOR == "2", "DIF", 
+                                                  ifelse(SECTOR == "3", "ESTATAL", 
+                                                         ifelse(SECTOR == "4", "ESTATAL", 
+                                                                ifelse(SECTOR == "5", "IMSS_BIENESTAR",  
+                                                                       ifelse(SECTOR == "6", "ISSSTE", 
+                                                                              ifelse(SECTOR == "7", "MUNICIPAL", 
+                                                                                     ifelse(SECTOR == "8", "PEMEX", 
+                                                                                            ifelse(SECTOR == "9", "PRIVADA", 
+                                                                                                   ifelse(SECTOR == "10", "SEDENA", 
+                                                                                                          ifelse(SECTOR == "11", "SEMAR", 
+                                                                                                                 ifelse(SECTOR == "12", "SSA", 
+                                                                                                                        ifelse(SECTOR == "13", "UNIVERSITARIO", "NO_ESPECIFICADO"))))))))))))))))
+
+```
+
+## g) Grafico
+```{r}
+
+oax <- select(data2, SECTOR,RESULTADO)
+
+oax<-as.data.frame(table(oax$SECTOR,oax$RESULTADO))
+
+
+oax
+ggplot(data = oax)+
+  aes(x=Var1, y = Freq) + 
+  geom_bar(stat="identity")
+```
+
+## h)Filtrar casos positivos de oaxava
+```{r}
+oax<-select(datos,ENTIDAD,RESULTADO,OBESIDAD,ASMA,HIPERTENSION,RENAL_CRONICA)
+oax$ENTIDAD<-as.character(oax$ENTIDAD)
+oax_pos<-filter(oax,
+                ENTIDAD =="Oaxaca"&
+                RESULTADO == 1)
+oax_pos<-filter(oax_pos,OBESIDAD,ASMA,HIPERTENSION,RENAL_CRONICA)
+oax_pos
+table(oax_pos$OBESIDAD)
+table(oax_pos$ASMA)
+table(oax_pos$HIPERTENSION)
+table(oax_pos$RENAL_CRONICA)
+```
+## h)Edades de casos positivos 
+```{r}
+oax<-select(datos,ENTIDAD,RESULTADO,EDAD)
+oax$ENTIDAD<-as.character(oax$ENTIDAD)
+oax_pos<-filter(oax,
+                ENTIDAD =="Oaxaca"&
+                  RESULTADO == 1)
+oax_pos
+boxplot(oax_pos$EDAD)
+
+```
+
+
+
+
+
+
+
+
+
