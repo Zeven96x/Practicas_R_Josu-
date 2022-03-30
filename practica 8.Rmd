@@ -1,0 +1,35 @@
+---
+title: "Practica 8"
+author: "Josué Alfonso Huerta Rita"
+date: '2022-03-22'
+output:
+  html_document:
+    toc: yes
+    toc_depth: 3
+    toc_float:
+      smooth_scroll: no
+    number_sections: yes
+    theme: united
+  pdf_document:
+    toc: yes
+    toc_depth: '3'
+---
+
+# Practica 8
+Cargar la base de datos Earquality y graficar con geom_line las temperaturas
+
+
+
+```{r}
+library(tidyverse)
+data("airquality")
+```
+
+
+
+```{r }
+
+ggplot(data = airquality,aes(x = Day, y= Temp)) + geom_line(alpha = 0.4, color= "blue")
+
+```
+

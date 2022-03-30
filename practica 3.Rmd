@@ -1,0 +1,33 @@
+---
+title: "Practica 3"
+author: "Josué Alfonso Huerta Rita"
+date: '2022-03-22'
+output:
+  html_document:
+    toc: yes
+    toc_depth: 3
+    toc_float:
+      smooth_scroll: no
+    number_sections: yes
+    theme: united
+  pdf_document:
+    toc: yes
+    toc_depth: '3'
+---
+
+# Practica 3
+
+## Leer tabla con read.table
+
+``` {r}
+    library(readxl)
+    data <- read.table(file = "datos.data", header = TRUE)
+    data
+```
+
+## Leer datos desde Excel con readxl
+``` {r}
+    dataXL <- read_excel(file.choose(), sheet = "Hoja1")
+    dataXL <- read_excel(path = "data.xls", sheet = "Hoja1")
+    as.data.frame(dataXL)
+```

@@ -1,0 +1,88 @@
+---
+title: "Practica 7"
+author: "Josué Alfonso Huerta Rita"
+date: '2022-03-22'
+output:
+  html_document:
+    toc: yes
+    toc_depth: 3
+    toc_float:
+      smooth_scroll: no
+    number_sections: yes
+    theme: united
+  pdf_document:
+    toc: yes
+    toc_depth: '3'
+---
+
+# Practica 7
+
+#Carga y analiza la estructura e información del data frame
+muestra el resumen usando la función
+str(nombreBaseDatos).
+
+
+```{r include=FALSE}
+library(dplyr)
+library(readxl)
+```
+
+```{r}
+Estudiantes<- read.csv("Estudiantes.csv")
+str(Estudiantes)
+
+```
+
+
+# Muestra el nombre de las variables
+
+  
+```{r }
+
+names(Estudiantes)
+
+```
+
+# Muestra información de tamaños en cuanto tamaño del archivo, dimensiones (fila, columna).
+
+
+```{r }
+
+object.size(Estudiantes)
+dim(Estudiantes)
+
+```
+
+# Suponga que solo se necesita que el conjunto de datos solo contenga de la observación 1-10
+con las columnas 2-5. Use los corchetes para crear el subconjunto y muestrelo. A partir de este subconjunto
+realice las siguientes filtraciones:
+a. Solo la fila 3 y la columna 2
+b. Todas las filas y solo la columna 2
+c. Solo la fila 3 y todas las columnas
+d. Quitar la fila 5 y dejar todas las columnas
+e. Todas las filas, pero sin la columna 2
+f. Todas las filas, pero solo columnas de 2 a 5
+g. Todas las filas, pero solo columnas 2 y 5
+h. Solo las filas de 1 a 4, con las columnas 2 a 5
+
+
+```{r }
+#a
+Estudiantes[3,2]
+#b
+Estudiantes[,2]
+#c
+Estudiantes[3,]
+#d
+newdata <- filter(Estudiantes, ï..Observacion != 4)
+#e
+newdata <- select(Estudiantes, -Sexo) 
+#f
+newdata2 <- select(Estudiantes, Sexo,SexoNum,Edad,Fuma) 
+#g
+newdata <- select(Estudiantes, Sexo,Fuma) 
+#h
+newdata2[1:4,]
+```
+
+# 

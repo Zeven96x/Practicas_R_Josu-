@@ -1,0 +1,110 @@
+---
+title: "Practica 4"
+author: "Josué Alfonso Huerta Rita"
+date: '2022-03-22'
+output:
+  html_document:
+    toc: yes
+    toc_depth: 3
+    toc_float:
+      smooth_scroll: no
+    number_sections: yes
+    theme: united
+  pdf_document:
+    toc: yes
+    toc_depth: '3'
+---
+
+# Practica 4 Cargar la base de datos cars y realizar:
+
+```{r include=FALSE}
+
+library(tidyverse)
+```
+
+
+## Mostrar el resumen del conjunto de datos.
+
+```{r }
+
+data("cars")
+cars
+
+```
+## Mostrar la cantidad de filas y columnas.
+
+```{r }
+
+dim(cars)
+
+```
+
+## Mostrar el tama ̃no del archivo.
+
+```{r }
+
+object.size(cars)
+
+```
+## Mostrar el nombre de las columnas.
+
+```{r }
+
+names(cars)
+
+```
+##Mostrar los  ́ultimos 10 registros.
+
+```{r }
+
+tail(cars,10)
+
+```
+## Mostrar los primeros 6 registros.
+
+```{r }
+
+cars[0:6,]
+
+```
+## Mostrar el registros que est ́a exactamente a la mitad.
+
+```{r }
+
+cars[nrow(cars/2),]
+
+```
+## Mostrar valores de la columna speed
+
+```{r }
+
+cars$speed
+
+```
+## Mostrar registros con speed > 20
+
+```{r }
+subset(cars,speed>20.0,)
+
+```
+## Mostrar los registros 2 y 20
+
+```{r }
+cars[c(2,20),]
+
+```
+## Mostrar los valores solo dist donde speed==20
+
+```{r }
+a<-subset(cars,speed>20.0,)
+a<-a$dist
+a
+
+```
+## En una variable sub1, almacenar las velocidades exclusivamente que sean >=20
+
+```{r }
+sub1<- subset(cars,speed>20.0,)
+
+```
+

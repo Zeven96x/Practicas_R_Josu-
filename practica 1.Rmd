@@ -1,0 +1,26 @@
+---
+title: "Practica 1"
+author: "Josué Alfonso Huerta Rita"
+date: '2022-03-22'
+output:
+  html_document:
+    toc: yes
+    toc_depth: 3
+    toc_float:
+      smooth_scroll: no
+    number_sections: yes
+    theme: united
+  pdf_document:
+    toc: yes
+    toc_depth: '3'
+---
+
+# Instalacion de R y Rstudio
+
+1.   Primero descarue R de la pagina oficial, en este caso seria la versión para windows: https://cran.r-project.org/bin/windows/base/
+2.   posteriormente lo instale y verifique que estuviese instalado desde la consola.
+3.   Instale RStudio desde su  pagina oficial: https://www.rstudio.com/products/rstudio/download/
+4.   Abri RStudio y ejecute la operación 2+2 para verificar que lo corriese correctamente.
+
+
+![imagen](ere.png)

@@ -1,0 +1,32 @@
+---
+title: "Practica 9"
+author: "ZevenPC"
+date: '2022-03-22'
+output: 
+  html_document:
+    toc: yes
+    toc_depth: 3
+    toc_float:
+      smooth_scroll: false
+    number_sections: true
+    theme: united
+---
+
+# Practica 9
+
+
+```{r}
+library(tidyverse)
+library(readxl)
+
+EconomistData <- read.csv("EconomistData.csv")
+```
+
+
+
+```{r }
+
+
+
+```
+

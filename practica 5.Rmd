@@ -1,0 +1,100 @@
+---
+title: "Practica 7"
+author: "Josué Alfonso Huerta Rita"
+date: '2022-03-22'
+output:
+  html_document:
+    toc: yes
+    toc_depth: 3
+    toc_float:
+      smooth_scroll: no
+    number_sections: yes
+    theme: united
+  pdf_document:
+    toc: yes
+    toc_depth: '3'
+---
+
+# Practica 5
+
+## Carga la base de dartos airquality
+
+```{r include=FALSE}
+library(dplyr)
+library(readxl)
+```
+
+```{r}
+data(airquality)
+```
+
+## Muestra la clase de estructura que posee la base de datos
+
+```{r}
+str(airquality)
+```
+
+## Muestra la clase de archivo que es la base de datos
+
+```{r}
+class(airquality)
+```
+## Muestra el resumen de la base de datos
+
+```{r}
+summary(airquality)
+```
+## Muestra los primeros 6 registros de la base de datos.
+
+```{r}
+airquality[1:6,]
+```
+
+## Crea un conjunto de datos con las variables Ozone, Wind y Temp. y muestra los primeros 6 registros.
+
+```{r}
+newdata <- select(airquality, Ozone, Wind, Temp)
+newdata[1:6,]
+```
+
+## Crea un conjunto de datos con las variables Ozone, Wind y Temp. y muestra los primeros 6 registros.
+
+```{r}
+newdata <- select(airquality, Ozone, Wind, Temp)
+newdata[1:6,]
+```
+
+## Crea un subconjunto de datos que tenga todas las variables excepto Wind y Day. Posteriormente filtra las radiaciones que sean mayores a 200 del mes 8.
+
+```{r}
+newdata <- select(airquality, -Wind,-Day)
+newdata <- filter(airquality,
+Solar.R > 200 )
+```
+## Muestra la variable Wind y Temp de los d ́ıas 1, 5 y 10.
+
+```{r}
+newdata <- airquality[c(1,5,10),]
+newdata <- select(newdata, Wind, Temp)
+newdata
+```
+## Modifica la variable temperatura, convierte de grados centigrados a grados farenheit.
+
+```{r}
+newdata <- mutate(airquality, Temp = ((Temp-32)*5/9))
+```
+## Agrupa por dias y muestra el resumen de los promedios de Wind y Temp
+
+```{r}
+newdata <- group_by(airquality, Day)
+
+newdatas <- summarize(newdata,
+                     Promedio_Wind = mean(Wind,na.rm = TRUE),
+                     Promedio_Temp = mean(Temp, na.rm= TRUE))
+newdatas
+
+```
+
+
+
+
